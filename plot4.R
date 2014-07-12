@@ -22,16 +22,17 @@ class(hpc_subset$Sub_metering_2) <- "numeric"
 class(hpc_subset$Sub_metering_3) <- "numeric"
 
 #create the graph
-dev.off()
-par(mfrow=c(2,2),  mar=c(4.1,4.1,3.1,1.0), cex.lab=0.8, cex.axis=0.75, family="sans")
+dev.off()               # 5.1 4.1 4.1 2.1
+par(mfcol=c(2,2),  mar=c(4.1,3,2.1,0.76), cex.lab=0.8, cex.axis=0.75, family="sans", mgp=c(2,0.75,0))
 with(hpc_subset, plot(datetime, Global_active_power, type="l", xlab="", ylab="Global Active Power"))
-with(hpc_subset, plot(datetime, Voltage, type="l", ylab="Voltage"))
 with(hpc_subset, {
   plot(datetime, Sub_metering_1, col="black", type="l", ylim=c(0, 38), xlab="", ylab="Energy sub metering")
   lines(datetime, Sub_metering_2, col="red", type="l")
   lines(datetime, Sub_metering_3, col="blue", type="l")
-  legend("topright",bty="n", bg="transparent",cex=0.7, inset=c(0.15,0.05), lty=1, col=c("black","red","blue"), legend=c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"))
+  legend("topright",bty="n", bg="transparent",cex=0.7, inset=c(0.1,0.05), lty=1, col=c("black","red","blue"), legend=c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"))
 })
-with(hpc_subset, plot(datetime, Global_reactive_power, type="l", fin=c(2.40,2.40)), las=)
+with(hpc_subset, plot(datetime, Voltage, type="l", ylab="Voltage"))
+with(hpc_subset, plot(datetime, Global_reactive_power, type="l"))
 dev.copy(png, file="plot4.png", h=480, w=480)
 dev.off()
+par()$mar
