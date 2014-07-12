@@ -21,8 +21,8 @@ class(hpc_subset$Sub_metering_1) <- "numeric"
 class(hpc_subset$Sub_metering_2) <- "numeric"
 class(hpc_subset$Sub_metering_3) <- "numeric"
 
-#create the graph
-dev.off()               # 5.1 4.1 4.1 2.1
+#create the 2 by 2 graph
+dev.off()              
 par(mfcol=c(2,2),  mar=c(4.1,3,2.1,0.76), cex.lab=0.8, cex.axis=0.75, family="sans", mgp=c(2,0.75,0))
 with(hpc_subset, plot(datetime, Global_active_power, type="l", xlab="", ylab="Global Active Power"))
 with(hpc_subset, {
@@ -35,4 +35,4 @@ with(hpc_subset, plot(datetime, Voltage, type="l", ylab="Voltage"))
 with(hpc_subset, plot(datetime, Global_reactive_power, type="l"))
 dev.copy(png, file="plot4.png", h=480, w=480)
 dev.off()
-par()$mar
+
